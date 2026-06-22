@@ -32,24 +32,24 @@ export class Project
   extends Model<IProjectAttributes, IProjectCreationAttributes>
   implements IProjectAttributes
 {
-  declare public id: number;
-  declare public title: string;
-  declare public description: string;
-  declare public fullDescription: string;
-  declare public difficulty: "easy" | "medium" | "hard";
-  declare public category: string;
-  declare public thumbnail: string;
-  declare public banner: string;
-  declare public reward: { points: number; badge: string };
-  declare public participants: number;
-  declare public completions: number;
-  declare public deadline: Date;
-  declare public status: "active" | "upcoming" | "closed";
-  declare public requirements: string;
-  declare public resources: string;
-  declare public tags: string;
-  declare public createdAt: Date;
-  declare public updatedAt: Date;
+  public id!: number;
+  public title!: string;
+  public description!: string;
+  public fullDescription!: string;
+  public difficulty!: "easy" | "medium" | "hard";
+  public category!: string;
+  public thumbnail!: string;
+  public banner!: string;
+  public reward!: { points: number; badge: string };
+  public participants!: number;
+  public completions!: number;
+  public deadline!: Date;
+  public status!: "active" | "upcoming" | "closed";
+  public requirements!: string;
+  public resources!: string;
+  public tags!: string;
+  public createdAt!: Date;
+  public updatedAt!: Date;
 }
 
 Project.init(

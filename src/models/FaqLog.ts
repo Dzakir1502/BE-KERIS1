@@ -16,10 +16,10 @@ export class FaqLog
   extends Model<IFaqLogAttributes, IFaqLogCreationAttributes>
   implements IFaqLogAttributes
 {
-  declare public id: number;
-  declare public pertanyaan: string;
-  declare public userId: number | null;
-  declare public createdAt: Date;
+  public id!: number;
+  public pertanyaan!: string;
+  public userId!: number | null;
+  public createdAt!: Date;
 }
 
 FaqLog.init(

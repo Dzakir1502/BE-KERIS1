@@ -9,7 +9,10 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
     "lint": "eslint src/**/*.ts",
-    "seed:admin": "tsx src/seeds/adminSeed.ts"
+    "seed:admin": "tsx src/seeds/adminSeed.ts",
+    "seed:ruangbelajar": "tsx seedRuangBelajar.ts",
+    "db:fix": "tsx fix_db.ts",
+    "db:init": "npm run seed:admin && npm run seed:ruangbelajar && npm run db:fix"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

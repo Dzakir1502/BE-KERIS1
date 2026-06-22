@@ -7,7 +7,7 @@ import { errorHandler } from "@utils/errorHandler";
 import { corsMiddleware } from "@middleware/cors";
 import apiRoutes from "@routes/index";
 
-// Load environment variables
+// Load and configure environment variables on startup
 dotenv.config();
 
 const app = express();

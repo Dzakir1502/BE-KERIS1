@@ -36,30 +36,30 @@ export class Thread
   extends Model<IThreadAttributes, IThreadCreationAttributes>
   implements IThreadAttributes
 {
-  declare public id: number;
-  declare public title: string;
-  declare public content: string;
-  declare public category: string;
-  declare public authorId: number;
-  declare public tags: string;
-  declare public views: number;
-  declare public likes: number;
-  declare public createdAt: Date;
-  declare public updatedAt: Date;
-  declare public lastActivity: Date;
+  public id!: number;
+  public title!: string;
+  public content!: string;
+  public category!: string;
+  public authorId!: number;
+  public tags!: string;
+  public views!: number;
+  public likes!: number;
+  public createdAt!: Date;
+  public updatedAt!: Date;
+  public lastActivity!: Date;
 }
 
 export class Reply
   extends Model<IReplyAttributes, IReplyCreationAttributes>
   implements IReplyAttributes
 {
-  declare public id: number;
-  declare public threadId: number;
-  declare public authorId: number;
-  declare public content: string;
-  declare public likes: number;
-  declare public createdAt: Date;
-  declare public updatedAt: Date;
+  public id!: number;
+  public threadId!: number;
+  public authorId!: number;
+  public content!: string;
+  public likes!: number;
+  public createdAt!: Date;
+  public updatedAt!: Date;
 }
 
 Thread.init(

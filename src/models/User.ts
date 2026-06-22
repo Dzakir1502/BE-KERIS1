@@ -24,19 +24,19 @@ export class User
   extends Model<IUserAttributes, IUserCreationAttributes>
   implements IUserAttributes
 {
-  declare public id: number;
-  declare public email: string;
-  declare public password: string;
-  declare public nama_lengkap: string;
-  declare public no_hp: string;
-  declare public bio: string;
-  declare public avatar: string;
-  declare public level: number;
-  declare public points: number;
-  declare public role: "user" | "mentor" | "admin";
-  declare public isMentor: boolean;
-  declare public createdAt: Date;
-  declare public updatedAt: Date;
+  public id!: number;
+  public email!: string;
+  public password!: string;
+  public nama_lengkap!: string;
+  public no_hp!: string;
+  public bio!: string;
+  public avatar!: string;
+  public level!: number;
+  public points!: number;
+  public role!: "user" | "mentor" | "admin";
+  public isMentor!: boolean;
+  public createdAt!: Date;
+  public updatedAt!: Date;
 }
 
 User.init(

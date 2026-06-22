@@ -20,15 +20,15 @@ export class Quest
   extends Model<IQuestAttributes, IQuestCreationAttributes>
   implements IQuestAttributes
 {
-  declare public id: number;
-  declare public title: string;
-  declare public description: string;
-  declare public xp: number;
-  declare public status: "active" | "locked" | "completed";
-  declare public level: number;
-  declare public order: number;
-  declare public createdAt: Date;
-  declare public updatedAt: Date;
+  public id!: number;
+  public title!: string;
+  public description!: string;
+  public xp!: number;
+  public status!: "active" | "locked" | "completed";
+  public level!: number;
+  public order!: number;
+  public createdAt!: Date;
+  public updatedAt!: Date;
 }
 
 Quest.init(

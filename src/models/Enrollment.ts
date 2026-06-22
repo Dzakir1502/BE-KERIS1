@@ -43,32 +43,32 @@ interface ICourseEnrollmentCreationAttributes
 export class Enrollment
   extends Model<IEnrollmentAttributes, IEnrollmentCreationAttributes>
   implements IEnrollmentAttributes {
-  declare public id: number;
-  declare public userId: number;
-  declare public mentorId: number | null;
-  declare public trackName: string;
-  declare public duration: number;
-  declare public startDate: Date;
-  declare public endDate: Date;
-  declare public progress: number;
-  declare public status: "active" | "completed" | "cancelled";
-  declare public createdAt: Date;
-  declare public updatedAt: Date;
+  public id!: number;
+  public userId!: number;
+  public mentorId!: number | null;
+  public trackName!: string;
+  public duration!: number;
+  public startDate!: Date;
+  public endDate!: Date;
+  public progress!: number;
+  public status!: "active" | "completed" | "cancelled";
+  public createdAt!: Date;
+  public updatedAt!: Date;
 }
 
 export class CourseEnrollment
   extends Model<ICourseEnrollmentAttributes, ICourseEnrollmentCreationAttributes>
   implements ICourseEnrollmentAttributes {
-  declare public id: number;
-  declare public userId: number;
-  declare public courseId: number;
-  declare public enrolledDate: Date;
-  declare public progress: number;
-  declare public completedLessons: string;
-  declare public completedModules: string;
-  declare public status: "active" | "completed" | "dropped";
-  declare public createdAt: Date;
-  declare public updatedAt: Date;
+  public id!: number;
+  public userId!: number;
+  public courseId!: number;
+  public enrolledDate!: Date;
+  public progress!: number;
+  public completedLessons!: string;
+  public completedModules!: string;
+  public status!: "active" | "completed" | "dropped";
+  public createdAt!: Date;
+  public updatedAt!: Date;
 }
 
 Enrollment.init(

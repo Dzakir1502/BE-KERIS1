@@ -19,14 +19,14 @@ interface IEnrollmentCodeCreationAttributes
 export class EnrollmentCode
   extends Model<IEnrollmentCodeAttributes, IEnrollmentCodeCreationAttributes>
   implements IEnrollmentCodeAttributes {
-  declare public id: number;
-  declare public code: string;
-  declare public trackName: string;
-  declare public isUsed: boolean;
-  declare public usedByUserId: number | null;
-  declare public usedAt: Date | null;
-  declare public createdAt: Date;
-  declare public updatedAt: Date;
+  public id!: number;
+  public code!: string;
+  public trackName!: string;
+  public isUsed!: boolean;
+  public usedByUserId!: number | null;
+  public usedAt!: Date | null;
+  public createdAt!: Date;
+  public updatedAt!: Date;
 }
 
 EnrollmentCode.init(

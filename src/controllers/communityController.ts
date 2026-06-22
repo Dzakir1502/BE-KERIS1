@@ -145,10 +145,38 @@ export const likeThread = asyncHandler(
   }
 );
 
+export const deleteThread = asyncHandler(
+  async (req: AuthRequest, res: Response) => {
+    const { threadId } = req.params;
+    const userId = req.user?.id;
+
+    const thread = await Thread.findByPk(Number(threadId));
+    if (!thread) {
+      sendError(res, "Thread not found", "THREAD_NOT_FOUND", 404);
+      return;
+    }
+
+    // Periksa kepemilikan thread
+    if (Number(thread.authorId) !== Number(userId)) {
+      sendError(res, "You are not authorized to delete this thread", "FORBIDDEN", 403);
+      return;
+    }
+
+    // Hapus balasan/replies terkait terlebih dahulu secara manual untuk mencegah error foreign key constraint
+    await Reply.destroy({ where: { threadId: Number(threadId) } });
+
+    // Hapus thread
+    await thread.destroy();
+
+    sendSuccess(res, "Thread deleted successfully", null);
+  }
+);
+
 export default {
   getAllThreads,
   getThreadDetail,
   createThread,
   replyToThread,
   likeThread,
+  deleteThread,
 };

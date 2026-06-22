@@ -29,13 +29,13 @@ export class Module
   extends Model<IModuleAttributes, IModuleCreationAttributes>
   implements IModuleAttributes
 {
-  declare public id: number;
-  declare public courseId: number;
-  declare public title: string;
-  declare public description: string;
-  declare public thumbnail: string;
-  declare public order: number;
-  declare public lessons: Array<{
+  public id!: number;
+  public courseId!: number;
+  public title!: string;
+  public description!: string;
+  public thumbnail!: string;
+  public order!: number;
+  public lessons!: Array<{
     id: string;
     title: string;
     type: "video" | "quiz" | "article" | "assignment";
@@ -44,8 +44,8 @@ export class Module
     content?: string;
     order: number;
   }>;
-  declare public createdAt: Date;
-  declare public updatedAt: Date;
+  public createdAt!: Date;
+  public updatedAt!: Date;
 }
 
 Module.init(

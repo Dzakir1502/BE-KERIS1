@@ -28,21 +28,21 @@ export class Submission
   extends Model<ISubmissionAttributes, ISubmissionCreationAttributes>
   implements ISubmissionAttributes
 {
-  declare public id: number;
-  declare public projectId: number;
-  declare public userId: number;
-  declare public projectLink: string;
-  declare public demoLink: string;
-  declare public description: string;
-  declare public technologies: string;
-  declare public status: "pending" | "approved" | "rejected";
-  declare public feedback: string;
-  declare public score: number;
-  declare public submittedAt: Date;
-  declare public reviewedAt: Date;
-  declare public reviewedBy: number;
-  declare public createdAt: Date;
-  declare public updatedAt: Date;
+  public id!: number;
+  public projectId!: number;
+  public userId!: number;
+  public projectLink!: string;
+  public demoLink!: string;
+  public description!: string;
+  public technologies!: string;
+  public status!: "pending" | "approved" | "rejected";
+  public feedback!: string;
+  public score!: number;
+  public submittedAt!: Date;
+  public reviewedAt!: Date;
+  public reviewedBy!: number;
+  public createdAt!: Date;
+  public updatedAt!: Date;
 }
 
 Submission.init(

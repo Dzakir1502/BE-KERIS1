@@ -25,19 +25,19 @@ export class Mentor
   extends Model<IMentorAttributes, IMentorCreationAttributes>
   implements IMentorAttributes
 {
-  declare public id: number;
-  declare public userId: number;
-  declare public specialty: string;
-  declare public bio: string;
-  declare public rating: number;
-  declare public hourlyRate: number;
-  declare public students: number;
-  declare public portfolio: string;
-  declare public reviews: string;
-  declare public availability: string;
-  declare public isActive: boolean;
-  declare public createdAt: Date;
-  declare public updatedAt: Date;
+  public id!: number;
+  public userId!: number;
+  public specialty!: string;
+  public bio!: string;
+  public rating!: number;
+  public hourlyRate!: number;
+  public students!: number;
+  public portfolio!: string;
+  public reviews!: string;
+  public availability!: string;
+  public isActive!: boolean;
+  public createdAt!: Date;
+  public updatedAt!: Date;
 }
 
 Mentor.init(

@@ -9,6 +9,8 @@ import dashboardRoutes from "./dashboardRoutes";
 import enrollmentCodeRoutes from "./enrollmentCodeRoutes";
 import faqLogRoutes from "./faqLogRoutes";
 import adminRoutes from "./adminRoutes";
+import * as aiController from "@controllers/aiController";
+import { authenticateToken } from "@middleware/auth";
 
 const router = Router();
 
@@ -23,6 +25,11 @@ router.use("/dashboard", dashboardRoutes);
 router.use("/enrollment-codes", enrollmentCodeRoutes);
 router.use("/log-faq", faqLogRoutes);
 router.use("/admin", adminRoutes);
+
+// AI Chatbot & Talent Scout Routes (matching the original routes)
+router.get("/ai/status", authenticateToken, aiController.getAIStatus);
+router.post("/faq-chatbot", authenticateToken, aiController.chatWithAI);
+router.post("/talent-scout", authenticateToken, aiController.evaluateTalent);
 
 export default router;
 

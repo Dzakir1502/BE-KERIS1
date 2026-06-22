@@ -1,26 +1,35 @@
 import dotenv from "dotenv";
 
-dotenv.config();
+dotenv.config({ override: true });
 
 // Validasi env wajib saat startup
-const requiredEnvVars = ["DB_HOST", "DB_NAME", "DB_USER", "JWT_SECRET"];
-for (const key of requiredEnvVars) {
-  if (!process.env[key]) {
-    console.error(`❌ Missing required environment variable: ${key}`);
-    process.exit(1);
-  }
+const hasDbUrl = !!(process.env.DATABASE_URL || process.env.MYSQL_URL || process.env.MYSQL_PRIVATE_URL);
+const hasDbHost = !!(process.env.DB_HOST || process.env.MYSQLHOST);
+const hasDbUser = !!(process.env.DB_USER || process.env.MYSQLUSER);
+const hasDbName = !!(process.env.DB_NAME || process.env.MYSQLDATABASE);
+
+if (!hasDbUrl && (!hasDbHost || !hasDbUser || !hasDbName)) {
+  console.error("❌ Missing required database environment variables.");
+  console.error("Please provide either DATABASE_URL/MYSQL_URL/MYSQL_PRIVATE_URL, or DB_HOST/MYSQLHOST, DB_USER/MYSQLUSER, and DB_NAME/MYSQLDATABASE.");
+  process.exit(1);
+}
+
+if (!process.env.JWT_SECRET) {
+  console.error("❌ Missing required environment variable: JWT_SECRET");
+  process.exit(1);
 }
 
 export const config = {
-  PORT: process.env.PORT || 5000,
+  PORT: process.env.PORT || 3000,
   NODE_ENV: process.env.NODE_ENV || "development",
 
-  // Database (MySQL only)
-  DB_HOST: process.env.DB_HOST!,
-  DB_PORT: parseInt(process.env.DB_PORT || "3306", 10),
-  DB_USER: process.env.DB_USER!,
-  DB_PASSWORD: process.env.DB_PASSWORD || "",
-  DB_NAME: process.env.DB_NAME!,
+  // Database
+  DB_URL: process.env.DATABASE_URL || process.env.MYSQL_URL || process.env.MYSQL_PRIVATE_URL || null,
+  DB_HOST: process.env.DB_HOST || process.env.MYSQLHOST || "localhost",
+  DB_PORT: parseInt(process.env.DB_PORT || process.env.MYSQLPORT || "3306", 10),
+  DB_USER: process.env.DB_USER || process.env.MYSQLUSER || "root",
+  DB_PASSWORD: process.env.DB_PASSWORD || process.env.MYSQLPASSWORD || "",
+  DB_NAME: process.env.DB_NAME || process.env.MYSQLDATABASE || "keris_db",
 
   // JWT
   JWT_SECRET: process.env.JWT_SECRET!,
@@ -40,6 +49,9 @@ export const config = {
   SMTP_PORT: parseInt(process.env.SMTP_PORT || "587", 10),
   SMTP_USER: process.env.SMTP_USER || "",
   SMTP_PASS: process.env.SMTP_PASS || "",
+
+  // AI Configuration
+  AI_API_URL: process.env.AI_API_URL || "https://cindipretty02-keris-kebot.hf.space",
 };
 
 export default config;

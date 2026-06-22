@@ -29,23 +29,23 @@ export class Course
   extends Model<ICourseAttributes, ICourseCreationAttributes>
   implements ICourseAttributes
 {
-  declare public id: number;
-  declare public title: string;
-  declare public description: string;
-  declare public fullDescription: string;
-  declare public category: string;
-  declare public level: "beginner" | "intermediate" | "advanced";
-  declare public thumbnail: string;
-  declare public instructorId: number;
-  declare public rating: number;
-  declare public students: number;
-  declare public duration: string;
-  declare public price: number;
-  declare public learningPoints: number;
-  declare public prerequisites: string;
-  declare public tags: string;
-  declare public createdAt: Date;
-  declare public updatedAt: Date;
+  public id!: number;
+  public title!: string;
+  public description!: string;
+  public fullDescription!: string;
+  public category!: string;
+  public level!: "beginner" | "intermediate" | "advanced";
+  public thumbnail!: string;
+  public instructorId!: number;
+  public rating!: number;
+  public students!: number;
+  public duration!: string;
+  public price!: number;
+  public learningPoints!: number;
+  public prerequisites!: string;
+  public tags!: string;
+  public createdAt!: Date;
+  public updatedAt!: Date;
 }
 
 Course.init(

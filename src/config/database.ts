@@ -1,26 +1,54 @@
 import { Sequelize } from "sequelize";
-import dotenv from "dotenv";
+import config from "./env";
 
-dotenv.config();
+const isDev = config.NODE_ENV === "development";
 
-const sequelize = new Sequelize({
-  dialect: "mysql",
-  host: process.env.DB_HOST || "localhost",
-  port: parseInt(process.env.DB_PORT || "3306"),
-  username: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD || "",
-  database: process.env.DB_NAME || "keris_db",
-  logging: process.env.NODE_ENV === "development" ? console.log : false,
-  pool: {
-    max: 10,
-    min: 0,
-    acquire: 30000,
-    idle: 10000,
-  },
-  define: {
-    charset: "utf8mb4",
-    collate: "utf8mb4_unicode_ci",
-  },
+let sequelize: Sequelize;
+
+if (config.DB_URL) {
+  sequelize = new Sequelize(config.DB_URL, {
+    dialect: "mysql",
+    logging: isDev ? console.log : false,
+    pool: {
+      max: 10,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    },
+    define: {
+      charset: "utf8mb4",
+      collate: "utf8mb4_unicode_ci",
+    },
+  });
+} else {
+  sequelize = new Sequelize({
+    dialect: "mysql",
+    host: config.DB_HOST,
+    port: config.DB_PORT,
+    username: config.DB_USER,
+    password: config.DB_PASSWORD,
+    database: config.DB_NAME,
+    logging: isDev ? console.log : false,
+    pool: {
+      max: 10,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    },
+    define: {
+      charset: "utf8mb4",
+      collate: "utf8mb4_unicode_ci",
+    },
+  });
+}
+
+// Set session sort_buffer_size to 16MB for every connection to prevent ER_OUT_OF_SORTMEMORY
+sequelize.addHook("afterConnect", (connection: any) => {
+  connection.query("SET SESSION sort_buffer_size = 1048576 * 16;", (err: any) => {
+    if (err) {
+      console.error("❌ Failed to set session sort_buffer_size:", err);
+    }
+  });
 });
 
 export const connectDB = async () => {
@@ -30,7 +58,7 @@ export const connectDB = async () => {
 
     // JANGAN pakai alter:true di production — bisa mengubah kolom secara destruktif
     // Schema dikelola via keris_db.sql / migrasi manual
-    if (process.env.NODE_ENV === "development") {
+    if (config.NODE_ENV === "development") {
       await sequelize.sync({ alter: false });
     }
     console.log("✅ Database models synchronized");

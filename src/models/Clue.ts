@@ -22,16 +22,16 @@ export class Clue
   extends Model<IClueAttributes, IClueCreationAttributes>
   implements IClueAttributes
 {
-  declare public id: number;
-  declare public questId: number | null;
-  declare public clueCode: string;
-  declare public type: "CORE CONCEPT" | "EVIDENCE" | "RARE TOOL" | "PROOF";
-  declare public title: string;
-  declare public description: string;
-  declare public codeSnippet: string | null;
-  declare public isLocked: boolean;
-  declare public createdAt: Date;
-  declare public updatedAt: Date;
+  public id!: number;
+  public questId!: number | null;
+  public clueCode!: string;
+  public type!: "CORE CONCEPT" | "EVIDENCE" | "RARE TOOL" | "PROOF";
+  public title!: string;
+  public description!: string;
+  public codeSnippet!: string | null;
+  public isLocked!: boolean;
+  public createdAt!: Date;
+  public updatedAt!: Date;
 }
 
 Clue.init(

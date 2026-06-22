@@ -38,4 +38,7 @@ router.post(
 // Like thread
 router.post("/threads/:threadId/like", communityController.likeThread);
 
+// Delete thread
+router.delete("/threads/:threadId", communityController.deleteThread);
+
 export default router;
